@@ -1,0 +1,215 @@
+/* Default View: no media query */
+/* Font Styling:
+Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  
+It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1.
+*/
+body {
+    font-family: 'Poppins', serif;
+    background-image: url('../images/concrete_seamless.png');
+    background-color: #f1f1f1;
+}
+
+/* Logo Animation: 
+Animate the logo with keyframes.
+It should start at a width of 25px and grow to 475px.
+It should also start with an opacity of 0 and end with an opacity of 1.
+The animation should take 5 seconds and only happen when the page is loaded.
+*/
+@keyframes logoAnimation {
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+#logo {
+    animation: logoAnimation 5s ease-in-out;
+}
+
+/* Header Styling: 
+Edit the css for the header tag (all instances) to use flex to match our example.
+*/
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navigation Styling: 
+Edit the css for the nav_links class to use flex to match our example. 
+Do not modify the list items or the links - modify the nav_links class to use flex.
+*/
+.nav_links {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Link Coloring Style:
+Style the links so that they have the same color even after they have been visited. */
+.nav_links a, .nav_links a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Styling for Direct Headers inside Card Class:
+Identify the proper selector to style ONLY those header elements that are direct children of a card class.
+*/
+
+.card > header {
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding: 20px 0;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/* Card Flexbox Setup:
+Edit the css for the card class to match our example.
+Achieve this by using a flex-property to specify an initial “size” of 450px.
+You need to think about this from a “flex” perspective and realize that flex-direction will affect the size of the elements.  
+*/
+.card {
+    /* Include adjusting curve on card as well */
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
+    flex-basis: 450px;
+    flex-direction: column;
+}
+
+/* Pricing Flexbox Centering: 
+Edit the css for the pricing class to match our example.
+You should use flex and the cards should be centered both horizontally and vertically.
+*/
+.pricing {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Gallery Image Styling: 
+Style the images in the gallery class.
+These elements will have a solid 10px border with a color of #50C7C7, 10px margin on all four sides and a width of 300px.
+*/
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+/* Gallery Flexbox Setup: 
+Edit the css for the gallery class to use flex to match our example.
+*/
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* When screen size is greater than 900px */
+@media only screen and (min-width: 900px) {
+    /* Edit the css for the header tag (all instances) and the nav_links class to match our example using flex-properties. 
+    The logo should be as far to the left as possible and the links as far to the right as possible. 
+    Use flex properties, NOT position properties. */
+    /* Update Header Styling: */
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /* Update Nav_links Styling: */
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    /* Edit the css for the pricing and card classes to match our example. 
+    Part of achieving this is by using a flex-property to specify a “size” of 275px. 
+    Notice that the elements do not have the same height, but do have the same width. */
+    /* Update Card Styling: */
+    .card {
+        display: flex;
+        flex-basis: 275px;
+    }
+    .pricing {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    /* Modify the first header (the one not inside main) so that it remains visible at the top of the screen even as we scroll down. 
+    Make sure that it is always visible. */
+    body > header:first-of-type {
+        position: sticky;
+        top: 0;
+        visibility: visible;
+    }
+}
+
+/* Reduced motion specifcations for animation. */
+/* The logo should appear but not be animated if prefers-reduced-motion is selected in the accessibility preferences.  */
+@media screen and (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* When page is printed in portrait mode. */
+@media print {
+    /* Change the font on your body to Arial with a backup value of  Helvetica.
+    The background image should be removed. */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+    }
+    /* Edit the nav/nav_links elements so that they are spaced according to the image above. Must be enough space for nav links. */
+    nav {
+        width: 100%;
+    }
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+    }
+    /* Style each child link in navigation row so it is centered in the nav flexbox */
+    .nav_links:nth-child(1){
+        margin: auto;
+    }
+    .nav_links:nth-child(2){
+        margin: auto;
+    }
+    .nav_links:nth-child(3){
+        margin: auto;
+    }
+    /* Edit the pricing class so that the elements align along the bottom.
+    As long as it aligns along the bottom we don't care if the cards aren't the same height. */
+    .pricing {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-bottom: 100px;
+    }
+
+    /* The card elements should have a solid border 2px of #45ADDD and use flex-basis of 325px. */
+    .card {
+        display: flex;
+        border: 2px solid #45ADDD;
+        flex-basis: 325px;
+    }
+
+    /* No part of the gallery should be visible. */
+    .gallery {
+        display: none;
+    }
+
+    /* Without using list-style-type add the thumbs up entity as shown in the cards. */
+    .card ul li:nth-child(2)::after {
+        content: "\01F44D";
+    }
+}
+
